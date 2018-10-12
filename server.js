@@ -9,6 +9,7 @@ const BlockHtml = require('./models/blockhtml');
 const moment = require('moment');
 
 const blockRoutes = require('./routes/blocks');
+const port = process.env.PORT;
 
 mongoose.connect('mongodb://' + process.env.USERNAME + ':' + process.env.PW +
   '@ds231133.mlab.com:31133/socketserver',
@@ -54,6 +55,6 @@ io.on('connection', (socket) => {
 
 app.use('/blocks', blockRoutes);
 
-http.listen(3000, function(){
-  console.log('listening on port: 3000')
+http.listen(port, function(){
+  console.log('listening on port: ' + port)
 })
