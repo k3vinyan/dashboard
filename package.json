@@ -4,11 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf dist",
-    "build": "npm run clean && webpack",
-    "start": "npm run build && node server.js",
-    "watch": "webpack --watch",
-    "serve": "webpack-dev-server --open"
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
