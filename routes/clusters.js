@@ -25,7 +25,7 @@ router.post('/', (req, res, next) => {
     console.log(date)
     console.log(cluster)
     console.log('----------------------------------')
-    return docs.length}
+    return docs.length
   })
   .then( data => {
     return data
