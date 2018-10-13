@@ -47,6 +47,7 @@ router.post('/', (req, res) => {
     } else {
       res.send('data already exist')
     }
+    res.end()
   })
 })
 
