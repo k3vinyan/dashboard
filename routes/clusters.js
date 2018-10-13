@@ -21,10 +21,6 @@ router.post('/', (req, res, next) => {
   const cluster = req.body.cluster;
   const data = req.body.data;
   const count = Cluster.find({date: date, cluster: cluster}, function(err, docs){
-    console.log(docs.length)
-    console.log(date)
-    console.log(cluster)
-    console.log('----------------------------------')
     return docs
   })
   .then( data => {
@@ -42,9 +38,8 @@ router.post('/', (req, res, next) => {
       })
       .catch( err => {
         res.send('error: ' + err)
-        })
-      }
-    })
+      })
+    }
   })
   .catch( err => {
     res.send('error: ' + err)
