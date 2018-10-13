@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const Cluster = require('../models/cluster');
 
 router.use(bodyParser.json({limit: '10mb', extended: true}))
-router.use(bodyParser.urlencoded({limit: '10mb', extended: true}))
+router.use(bodyParser.urlencoded({limit: '10mb', extended: true, parameterLimit: 1000000}))
 
 router.get('/', (req, res) => {
   Cluster.find({})
