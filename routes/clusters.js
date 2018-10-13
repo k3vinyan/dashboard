@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
   const cluster = req.body.cluster;
   const data = req.body.data;
 
-  console.log(Cluster.find({date: date, cluster: cluster}))
+  //console.log(Cluster.find({date: date, cluster: cluster}))
 })
 
 router.get('/:date/:cluster', (req, res) => {
