@@ -56,7 +56,7 @@ io.on('connection', (socket) => {
 })
 
 app.use('/blocks', blockRoutes);
-app.use('/clusters', clusterRoutes);
+app.use('/checkout', clusterRoutes);
 
 http.listen(port, function(){
   console.log('listening on port: ' + port)
