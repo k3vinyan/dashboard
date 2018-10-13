@@ -20,36 +20,15 @@ router.post('/', (req, res, next) => {
   const date = req.body.date;
   const cluster = req.body.cluster;
   const data = req.body.data;
-  Cluster.find({date: date, cluster: cluster}, function(err, docs){
+  const count = Cluster.find({date: date, cluster: cluster}, function(err, docs){
     console.log(docs.length)
     console.log(date)
     console.log(cluster)
     console.log('----------------------------------')
-    console.log(docs)
-
-    if(docs.length === 0){
-      console.log("hiiiii")
-      let c = new Cluster({
-        _id: new mongoose.Types.ObjectId(),
-        date: date,
-        cluster: cluster,
-        data: data
-      })
-      c.save()
-        .then( data => {
-          res.send('data saved!')
-          return next();
-        })
-        .catch( err => {
-          res.sendStatus(500).json({
-            error: err
-          })
-        })
-    } else {
-      res.send('data already exist')
-    }
-    res.end()
+    return docs.length}
   })
+  console.log(count)
+
 })
 
 router.get('/:date/:cluster', (req, res) => {
