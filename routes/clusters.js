@@ -28,6 +28,7 @@ router.post('/', (req, res, next) => {
     return docs.length
   })
   .then( data => {
+    console.log(data)
     return data
   })
 
