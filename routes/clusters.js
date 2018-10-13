@@ -43,9 +43,7 @@ router.post('/', (req, res, next) => {
   })
   .catch( err => {
     res.send('error: ' + err)
-    })
   })
-
 })
 
 router.get('/:date/:cluster', (req, res) => {
