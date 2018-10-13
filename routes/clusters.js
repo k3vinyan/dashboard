@@ -28,6 +28,7 @@ router.post('/', (req, res) => {
     console.log(docs)
 
     if(docs.length === 0){
+      console.log("hiiiii")
       let cluster = new Cluster({
         _id: new mongoose.Types.ObjectId(),
         date: date,
