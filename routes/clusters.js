@@ -38,6 +38,7 @@ router.post('/', (req, res) => {
       c.save()
         .then( data => {
           res.send('data saved!')
+          return next();
         })
         .catch( err => {
           res.sendStatus(500).json({
