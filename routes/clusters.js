@@ -41,15 +41,13 @@ router.post('/', (req, res, next) => {
         res.send('cluster saved!')
       })
       .catch( err => {
-        res.sendStatus(500).json({
-          error: err
+        res.send('error: ' + err)
         })
       })
     }
   })
   .catch( err => {
-    res.sendStatus(500).json({
-      error: err
+    res.send('error: ' + err)
     })
   })
 
