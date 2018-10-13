@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const Cluster = require('../models/cluster');
+
+router.use(bodyParser.urlencoded({ extended: false }))
 
 router.get('/', (req, res) => {
   Cluster.find({})
@@ -11,8 +14,18 @@ router.get('/', (req, res) => {
     })
 })
 
+router.post('/', (req, res) => {
+  console.log(req)
+})
+
 router.get('/:date/:cluster', (req, res) => {
-  console.log(req.params)
+  const d = req.params.date;
+  const c = req.params.cluster;
+
+  Cluster.find({date: d, cluster: c})
+    .then(data => {
+      res.send(data)
+    })
 })
 
 module.exports = router;
