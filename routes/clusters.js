@@ -23,6 +23,26 @@ router.post('/', (req, res) => {
     console.log(docs.length)
     console.log('----------------------------------')
     console.log(docs)
+
+    if(docs.length === 0){
+      let cluster = new Cluster({
+        _id: new mongoose.Types.ObjectId(),
+        date: date,
+        cluster: cluster,
+        data: data
+      })
+      cluster.save()
+        .then( data => {
+          res.send('data saved!')
+        })
+        .catch( err => {
+          res.sendStatus(500).json({
+            error: err
+          })
+        })
+    } else {
+      res.send('data already exist')
+    }
   })
 })
 
