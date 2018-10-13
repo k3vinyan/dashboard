@@ -22,6 +22,8 @@ router.post('/', (req, res) => {
   const data = req.body.data;
   Cluster.find({date: date, cluster: cluster}, function(err, docs){
     console.log(docs.length)
+    console.log(date)
+    console.log(cluster)
     console.log('----------------------------------')
     console.log(docs)
 
