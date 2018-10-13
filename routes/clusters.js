@@ -28,8 +28,29 @@ router.post('/', (req, res, next) => {
     return docs
   })
   .then( data => {
-    console.log(data.length)
-    return data
+    if( data.length === 0){
+      res.send('cluster already existed!')
+    } else {
+      const cluster = new Cluster({
+        date: date,
+        cluster: cluster,
+        data: data
+      })
+      cluster.save()
+      .then( data => {
+        res.send('cluster saved!')
+      })
+      .catch( err => {
+        res.sendStatus(500).json({
+          error: err
+        })
+      })
+    }
+  })
+  .catch( err => {
+    res.sendStatus(500).json({
+      error: err
+    })
   })
 
 })
