@@ -27,7 +27,9 @@ router.post('/', (req, res, next) => {
     console.log('----------------------------------')
     return docs.length}
   })
-  console.log(count)
+  .then( data => {
+    return data
+  })
 
 })
 
