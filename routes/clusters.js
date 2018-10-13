@@ -14,3 +14,5 @@ router.get('/', (req, res) => {
 router.get('/:date/:cluster', (req, res) => {
   console.log(req.params)
 })
+
+module.exports = router;
