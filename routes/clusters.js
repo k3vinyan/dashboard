@@ -29,13 +29,13 @@ router.post('/', (req, res) => {
 
     if(docs.length === 0){
       console.log("hiiiii")
-      let cluster = new Cluster({
+      let c = new Cluster({
         _id: new mongoose.Types.ObjectId(),
         date: date,
         cluster: cluster,
         data: data
       })
-      cluster.save()
+      c.save()
         .then( data => {
           res.send('data saved!')
         })
