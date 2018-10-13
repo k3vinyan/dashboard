@@ -27,7 +27,7 @@ router.post('/', (req, res, next) => {
     if( data.length != 0){
       res.send('cluster already existed!')
     } else {
-      const cluster = new Cluster({
+      const c = new Cluster({
         date: date,
         cluster: cluster,
         data: data
