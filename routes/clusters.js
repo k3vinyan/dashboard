@@ -28,7 +28,7 @@ router.post('/', (req, res, next) => {
     return docs
   })
   .then( data => {
-    if( data.length === 0){
+    if( data.length != 0){
       res.send('cluster already existed!')
     } else {
       const cluster = new Cluster({
