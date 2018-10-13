@@ -16,6 +16,12 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   console.log(req.body)
+
+  const date = req.body.date;
+  const cluster = req.body.cluster;
+  const data = req.body.data;
+
+  console.log(Cluster.find({date: date, cluster: cluster}))
 })
 
 router.get('/:date/:cluster', (req, res) => {
