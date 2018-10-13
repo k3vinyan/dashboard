@@ -15,7 +15,6 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  console.log(req.body)
 
   const date = req.body.date;
   const cluster = req.body.cluster;
