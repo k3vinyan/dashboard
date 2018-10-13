@@ -32,7 +32,7 @@ router.post('/', (req, res, next) => {
         cluster: cluster,
         data: data
       })
-      cluster.save()
+      c.save()
       .then( data => {
         res.send('cluster saved!')
       })
