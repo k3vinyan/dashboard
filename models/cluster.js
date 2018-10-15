@@ -5,7 +5,11 @@ const clusterSchema = new Schema({
   _id: mongoose.Schema.Types.ObjectId,
   date: String,
   cluster: String,
-  data: String
+  data: [{type: Schema.ObjectId, ref: ''}]
 })
+
+const
+
+
 
 module.exports = mongoose.model('Cluster', clusterSchema);

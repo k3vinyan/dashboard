@@ -52,6 +52,9 @@ router.get('/:date/:cluster', (req, res) => {
   const d = req.params.date;
   const c = req.params.cluster;
 
+  console.log(d)
+  console.log(c)
+
   Cluster.find({date: d, cluster: c})
     .then(data => {
       res.send(data)
