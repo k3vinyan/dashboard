@@ -62,7 +62,10 @@ router.get('/:date/:cluster', (req, res) => {
 })
 
 router.get('/reset', (req, res) => {
-  Cluster.remove().exec();
+  Cluster.deleteMany().exec()
+    .then( data => {
+      res.send("You deleted everything.... :( " + data)
+    })
 })
 
 module.exports = router;
