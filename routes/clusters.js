@@ -20,7 +20,7 @@ router.post('/', (req, res, next) => {
   const date = req.body.date;
   const cluster = req.body.cluster;
   const route = req.body.data;
-  console.log("data: " + data)
+  console.log("data: " + route)
   const count = Cluster.find({date: date, cluster: cluster}, function(err, docs){
     return docs
   })
