@@ -38,8 +38,7 @@ router.post('/', (req, res, next) => {
     }
 
     const tba = new Schema.Tba({
-      _id: new mongoose.types.ObjectId(),
-      tba:
+      _id: new mongoose.types.ObjectId()
     })
 
 
