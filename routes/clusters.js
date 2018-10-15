@@ -28,6 +28,11 @@ router.post('/', (req, res, next) => {
     // if( data.length != 0){
     //   res.send('cluster already existed!')
     // } else {
+      for(let i in data){
+        console.log(i)
+        console.log(data[i])
+        console.log('-----------------------------------------')
+      }
       const c = new Cluster({
         _id: new mongoose.Types.ObjectId(),
         date: date,
