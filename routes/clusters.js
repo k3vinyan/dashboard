@@ -61,4 +61,8 @@ router.get('/:date/:cluster', (req, res) => {
     })
 })
 
+router.get('/reset', (req, res) => {
+  Cluster.remove().exec();
+})
+
 module.exports = router;
