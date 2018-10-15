@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-const Cluster = require('../models/cluster');
+const Schema = require('../models/cluster');
 
 router.use(bodyParser.json({limit: '10mb', extended: true}))
 router.use(bodyParser.urlencoded({limit: '10mb', extended: true, parameterLimit: 1000000}))
@@ -30,11 +30,19 @@ router.post('/', (req, res, next) => {
     // } else {}
     console.log("this is data: " + data);
     console.log("this is route: " + route);
+    console.log("****************************************************")
     for(let i in route){
       console.log(i)
       console.log(route[i])
       console.log('-----------------------------------------')
     }
+
+    const tba = new Schema.Tba({
+      _id: new mongoose.types.ObjectId(),
+      tba:
+    })
+
+
     const c = new Cluster({
       _id: new mongoose.Types.ObjectId(),
       date: date,

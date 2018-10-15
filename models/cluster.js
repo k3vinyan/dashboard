@@ -29,4 +29,8 @@ const clusterSchema = new Schema({
 
 
 
-module.exports = mongoose.model('Cluster', clusterSchema);
+module.exports = {
+  Tba: tbaSchema,
+  Route: routeSchema,
+  Cluster: clusterSchema
+}
