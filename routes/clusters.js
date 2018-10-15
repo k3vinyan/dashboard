@@ -28,9 +28,11 @@ router.post('/', (req, res, next) => {
     // if( data.length != 0){
     //   res.send('cluster already existed!')
     // } else {}
+    console.log("this is data: " + data);
+    console.log("this is route: " + route);
     for(let i in route){
       console.log(i)
-      console.log(data[i])
+      console.log(route[i])
       console.log('-----------------------------------------')
     }
     const c = new Cluster({
