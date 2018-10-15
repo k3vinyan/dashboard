@@ -27,26 +27,25 @@ router.post('/', (req, res, next) => {
   .then( data => {
     // if( data.length != 0){
     //   res.send('cluster already existed!')
-    // } else {
-      for(let i in route){
-        console.log(i)
-        console.log(data[i])
-        console.log('-----------------------------------------')
-      }
-      const c = new Cluster({
-        _id: new mongoose.Types.ObjectId(),
-        date: date,
-        cluster: cluster,
-        data: route
-      })
-      c.save()
-      .then( data => {
-        res.send('cluster saved!')
-      })
-      .catch( err => {
-        res.send('error: ' + err)
-      })
+    // } else {}
+    for(let i in route){
+      console.log(i)
+      console.log(data[i])
+      console.log('-----------------------------------------')
     }
+    const c = new Cluster({
+      _id: new mongoose.Types.ObjectId(),
+      date: date,
+      cluster: cluster,
+      data: route
+    })
+    c.save()
+    .then( data => {
+      res.send('cluster saved!')
+    })
+    .catch( err => {
+      res.send('error: ' + err)
+    })
   })
   .catch( err => {
     res.send('error: ' + err)
