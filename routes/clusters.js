@@ -30,6 +30,7 @@ router.post('/', (req, res, next) => {
     // } else {}
     console.log("this is data: " + data);
     console.log("this is route: " + route);
+    console.log(date)
     console.log("****************************************************")
     for(let i in route){
       console.log(i)
@@ -42,7 +43,7 @@ router.post('/', (req, res, next) => {
     })
 
 
-    const c = new Cluster({
+    const c = new Schema.Cluster({
       _id: new mongoose.Types.ObjectId(),
       date: date,
       cluster: cluster,
