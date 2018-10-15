@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const clusterSchema = new Schema({
-  _id: mongoose.Schema.Types.ObjectId,
-  date: String,
-  cluster: String,
-  data: [routeSchema]
+const tbaSchema = new Schema({
+  tba: String,
+  postal: String,
+  status: String,
+  type: String
 })
 
 const routeSchema = new Schema({
@@ -18,12 +18,15 @@ const routeSchema = new Schema({
   tbas: [tbaSchema]
 })
 
-const tbaSchema = new Schema({
-  tba: String,
-  postal: String,
-  status: String,
-  type: String,
-
+const clusterSchema = new Schema({
+  _id: mongoose.Schema.Types.ObjectId,
+  date: String,
+  cluster: String,
+  data: [routeSchema]
 })
+
+
+
+
 
 module.exports = mongoose.model('Cluster', clusterSchema);
