@@ -9,6 +9,7 @@ const driverSchema = new Schema({
   startTime: String,
   endTime: String,
   checkin: Boolean,
+  createdDate: String,
   block: { type: Schema.Types.ObjectId, ref: 'Block' }
 })
 
