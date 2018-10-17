@@ -22,7 +22,7 @@ router.get('/count', (req, res, next) => {
       res.status(500).send({err: err})
     } else {
       console.log( "Number of users:", count );
-      res.send( "Number of users:", count);
+      res.status(200).send(count)
     }
   })
 })
