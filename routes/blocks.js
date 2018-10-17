@@ -13,6 +13,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/:today', (req, res, next) => {
+  console.log(req.body)
   const today = req.body.today;
   console.log(today);
 
