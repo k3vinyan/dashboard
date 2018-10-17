@@ -14,22 +14,20 @@ router.get('/', (req, res, next) => {
 
 router.post('/:today', (req, res, next) => {
   const today = req.params.today
+  console.log(req.body.data)
   console.log('this is the roster')
 
   Roster.findOne({ date: today})
   .exec(function(err, result){
     if(result === null){
-      console.log('document doesnt exist')
+      console.log('document doesn\'t exist')
+
+      let blocks = [];
+
     } else if(err){
       console.log('error has occurred: ' + error)
+      res.send(error)
     }
-  })
-  .then(function(result){
-    console.log('document does exist')
-    res.send('result: '  + result )
-  })
-  .catch(error => {
-    console.log('this is a error:' + error)
   })
 
 
