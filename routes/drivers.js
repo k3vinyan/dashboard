@@ -67,7 +67,7 @@ router.post('/', (req, res, next) => {
             if(err) console.log(err)
           })
         }
-        return;
+        return promise;
       })
 
       promise.then.then((doc) =>{
