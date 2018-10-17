@@ -1,36 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const tbaSchema = new Schema({
-  tba: String,
-  postal: String,
-  status: String,
-  type: String
-})
-
-const routeSchema = new Schema({
-  _id: mongoose.Schema.Types.ObjectId,
-  type: String,
-  atStation: Number,
-  betweenStation: Number,
-  outForDelivery: Number,
-  others: Number,
-  tbas: [tbaSchema]
-})
-
 const clusterSchema = new Schema({
   _id: mongoose.Schema.Types.ObjectId,
   date: String,
   cluster: String,
-  data: [routeSchema]
+  routes: [{ type: Schema.Types.ObjectId, ref: 'Route' }],
+  tbas: { type: Schema.Types.ObjectId, ref: 'Route' }
 })
 
-
-
-
-
-module.exports = {
-  Tba: tbaSchema,
-  Route: routeSchema,
-  Cluster: clusterSchema
-}
+model.exports = mongoose.model('Route', routeSchema);
