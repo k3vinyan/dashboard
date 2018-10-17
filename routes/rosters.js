@@ -23,8 +23,8 @@ router.post('/:today', (req, res, next) => {
 
   console.log('this is the roster')
 
-  Roster.findOne({ date: today})
-  .exec(function(err, result){
+  r Roster.findOne({ date: today})
+  r.exec(function(err, result){
     if(result === null){
       console.log('document doesn\'t exist')
 
@@ -49,8 +49,8 @@ router.post('/:today', (req, res, next) => {
       console.log('error has occurred: ' + error)
       res.send(error)
     } else {
-      console.log('this is the results')
-      console.log(result)
+      console.log('----------------------------')
+      console.log(r.blockCount)
     }
   })
   res.send(req.params.today)
