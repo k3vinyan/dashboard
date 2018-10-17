@@ -34,6 +34,8 @@ router.post('/', (req, res, next) => {
     const startTime = driverArr[i]['startTime'];
     const endTime = driverArr[i]['endTime'];
 
+    console.log(name)
+
     try{
       const checkDriver = Driver.find({driverId: driverId, block: block, createdDate: today})
       checkDriver.exec( result => {
@@ -41,19 +43,19 @@ router.post('/', (req, res, next) => {
         if( result === null ) {
           const d = new Driver({
             _id: new mongoose.Types.ObjectId(),
-            name: driverArr[i]['driver'],
-            block: driverArr[i]['block'],
-            driverId: driverArr[i]['id'],
-            shiftLength: driverArr[i]['shiftLength'],
-            startTime: driverArr[i]['startTime'],
-            endTime: driverArr[i]['endTime'],
+            name: name,
+            block: block,
+            driverId: driverId,
+            shiftLength: shiftLength,
+            startTime: startTime,
+            endTime: endTime,
             createdDate: today,
             checkin: false
             //block: rId
           })
           d.save(err => {
             if(err) console.log(err)
-            console.log('saved!')
+          //  console.log('saved!')
           })
         } else {
           console.log( result.name + " already existed in database")
