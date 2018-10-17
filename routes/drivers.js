@@ -19,7 +19,7 @@ router.get('/', (req, res, next) => {
 router.get('/count', (req, res, next) => {
   Driver.countDocuments({}, function( err, count){
     console.log( "Number of users:", count );
-    res.send(count)
+    res.send( "Number of users:", count)
   })
 })
 
@@ -68,12 +68,6 @@ router.post('/', (req, res, next) => {
       break;
     }
   }
-  Driver.count({}, function( err, count){
-    console.log( "Number of users:", count );
-    res.send('All drivers saved sucessfully!')
-  })
-
-
 })
 
 router.delete('/deleteAll', (req, res, next) => {
