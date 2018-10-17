@@ -16,6 +16,13 @@ router.get('/', (req, res, next) => {
   })
 })
 
+router.get('/count', (req, res, next) => {
+  Driver.count({}, function( err, count){
+    console.log( "Number of users:", count );
+    res.send('All drivers saved sucessfully!')
+  })
+})
+
 
 
 
