@@ -13,10 +13,31 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/:today', (req, res, next) => {
-  console.log(req.params.today)
+  const today = req.params.today
   console.log('this is the roster')
   console.log(Roster.find({date: req.params.today}))
+
+  Roster.findOneAndUpdate({ date: today }, (error, result) => {
+    if(!error){
+      console.log('document doesnt exist');
+      if(!result){
+        console.log('creating document')
+      }
+    }
+  })
+  .then(function(result){
+    console.log('document does exist')
+    res.send('result: '  + result )
+  })
+  .catch(error => {
+    console.log('this is a error:' + error)
+  })
+
+
+
   res.send(req.params.today)
+
+
 
 
 })
