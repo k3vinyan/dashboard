@@ -70,7 +70,8 @@ router.post('/', (req, res, next) => {
             res.send(err)
             return;
           } else {
-            res.end(doc)
+            res.send(doc)
+            res.end()
           }
         })
 
