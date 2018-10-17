@@ -34,9 +34,6 @@ router.post('/', (req, res, next) => {
   const today = moment().format("MM-DD-YYYY");
   const driverArr = JSON.parse(req.body.data)
 
-  //const rId = Roster.findOne({ date: today })._id
-
-  //need to check for dup
   for(let i = 0; i < driverArr.length; i++){
     const name = driverArr[i]['name'];
     const driverId = driverArr[i]['id'];
@@ -70,7 +67,7 @@ router.post('/', (req, res, next) => {
         return promise;
       })
 
-      promise.then.then((doc) =>{
+      promise.then((doc) =>{
         Driver.find({createdDate: today})
         .exec( (err, docs) => {
           res.send(docs)
