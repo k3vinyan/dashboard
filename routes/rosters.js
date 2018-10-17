@@ -4,6 +4,36 @@ const router = express.Router();
 const Roster = require('../models/roster');
 const Driver = require('../models/driver');
 
+
+function loop(array, start, end){
+  let index = start;
+  let stop = end;
+
+  setTimeout(function(){
+      if(index < end){
+        let driver = new Driver({
+          _id: new mongoose.Types.ObjectId(),
+          name: driverArr[i]['driver'],
+          driverId: driverArr[i]['id'],
+          shiftLength: driverArr[i]['shiftLength'],
+          startTime: driverArr[i]['startTme'],
+          endTime: driverArr[i]['endTime'],
+          checkin: false,
+          block: result._id
+        })
+        driver.save(function(err){
+          if(err){
+            console.log(err)
+          } else{
+            console.log('driver saved')
+          }
+        })
+
+        loopTbas(array, index, stop);
+      }
+    }, 500)
+}
+
 router.get('/', (req, res, next) => {
   Roster.find({})
     .then( data => {
@@ -61,31 +91,15 @@ router.post('/:today', (req, res, next) => {
     } else if(result.blockCount != driverArr.length){
       console.log('hi')
       let count = 0;
-      for(let i = 0; i < driverArr.length; i++){
-        let dID = driverArr[i]['id'];
-        let dShiftLength = driverArr[i]['shiftLength'];
-        if(Driver.findOne({driverId: dID, ShiftLength: dShiftLength}) === null){
-          console.log("Driver already existed!")
-        } else {
-          let driver = new Driver({
-            _id: new mongoose.Types.ObjectId(),
-            name: driverArr[i]['driver'],
-            driverId: driverArr[i]['id'],
-            shiftLength: driverArr[i]['shiftLength'],
-            startTime: driverArr[i]['startTme'],
-            endTime: driverArr[i]['endTime'],
-            checkin: false,
-            block: result._id
-          })
-          driver.save(function(err){
-            if(err){
-              console.log(err)
-            } else{
-              console.log('driver saved')
-            }
-          })
-        }
-      }
+      loop(driverArr, 0, driverArr.length)
+
+
+        // let dID = driverArr[i]['id'];
+        // let dShiftLength = driverArr[i]['shiftLength'];
+        // if(Driver.findOne({driverId: dID, ShiftLength: dShiftLength}) === null){
+        //   console.log("Driver already existed!")
+        // }
+
     }
   })
 })
