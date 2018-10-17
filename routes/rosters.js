@@ -48,6 +48,9 @@ router.post('/:today', (req, res, next) => {
     } else if(err){
       console.log('error has occurred: ' + error)
       res.send(error)
+    } else {
+      console.log('this is the results')
+      console.log(result)
     }
   })
   res.send(req.params.today)
