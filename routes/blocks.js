@@ -16,7 +16,7 @@ router.post('/:today', (req, res, next) => {
   const today = req.body.today;
   console.log(today);
 
-  res.send(today);
+  res.send(today + "hello");
 })
 
 router.get('/html', (req, res, next) => {
