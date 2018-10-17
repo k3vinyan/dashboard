@@ -9,6 +9,7 @@ const blockSchema = new Schema({
   accepted: Number,
   actual: Number,
   noShow: Number,
+  roster: { type: Schema.Types.ObjectId, ref: 'Roster'},
   drivers: [{ type: Schema.Types.ObjectId, ref: 'Driver' }],
 })
 
