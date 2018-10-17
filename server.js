@@ -16,7 +16,6 @@ const driverRoutes = require('./routes/drivers');
 const bodyParser = require('body-parser');
 
 
-
 const port = process.env.PORT;
 
 mongoose.connect('mongodb://' + process.env.USERNAME + ':' + process.env.PW +
@@ -40,11 +39,17 @@ io.on('connection', (socket) => {
     const driverId = data['driverId'];
     const startTime = data['startTime'];
     const endTime = data['endTime'];
+    const check = data['checkin'];
 
     Driver.find({driverId: driverId, startTime: startTime, endTime: endTime}).limit(1)
     .exec()
     .then( d => {
-      console.log(d)
+      d.checkin = check;
+      d.save( e => {
+        if(e) console.log('unable to saved: ' + e)
+        console.log(d)
+        socket.broadcast.emit('updateCheck', d)
+      })
     })
     .catch( e => {
       console.log("Check error: " + e)
