@@ -16,16 +16,16 @@ router.get('/', (req, res, next) => {
   })
 })
 
-router.get('/count', (req, res, next) => {
-  Driver.countDocuments({}, function( err, count){
-    if(err){
-      res.status(500).send({err: err})
-    } else {
-      console.log( "Number of users:", count );
-      res.status(200).send(count)
-    }
-  })
-})
+// router.get('/count', (req, res, next) => {
+//   Driver.countDocuments({}, function( err, count){
+//     if(err){
+//       res.status(500).send({err: err})
+//     } else {
+//       console.log( "Number of users:", count );
+//       res.status(200).send(count)
+//     }
+//   })
+// })
 
 router.post('/', (req, res, next) => {
   const today = moment().format("MM-DD-YYYY");
