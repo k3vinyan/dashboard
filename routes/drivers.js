@@ -18,8 +18,12 @@ router.get('/', (req, res, next) => {
 
 router.get('/count', (req, res, next) => {
   Driver.countDocuments({}, function( err, count){
-    console.log( "Number of users:", count );
-    res.send( "Number of users:", count)
+    if(err){
+      res.status(500).send({err: err})
+    } else {
+      console.log( "Number of users:", count );
+      res.send( "Number of users:", count);
+    }
   })
 })
 
