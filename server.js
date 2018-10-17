@@ -5,6 +5,7 @@ const io = require('socket.io')(http);
 const mongoose = require('mongoose');
 require('dotenv').config();
 const Block = require('./models/block');
+const Driver = require('./models/driver');
 const BlockHtml = require('./models/blockhtml');
 const moment = require('moment');
 
@@ -35,17 +36,10 @@ io.on('connection', (socket) => {
   console.log('user connected')
   date = moment().format("MM-DD-YYYY");
 
-  socket.on('newBlock', (data)=>{
-
-    const b = BlockHtml.findOne()
-    b.updateOne({html: data})
-      .then( data => {
-        console.log("successful: " + data)
-      })
-      .catch(err => {
-        console.log("error: " + err)
-      })
+  socket.on('check', (data)=>{
+    console.log(data)
   })
+
 
   socket.on('sameBlock', (data) => {
     const b = BlockHtml.findOne()

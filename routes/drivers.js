@@ -66,8 +66,15 @@ router.post('/', (req, res, next) => {
         }
         const driver = Driver.find({createdDate: today})
         driver.exec( (err, doc) => {
-          res.send(doc)
+          if(err){
+            res.send(err)
+            return;
+          } else {
+            res.send(doc)
+            return;
+          }
         })
+
       })
     } catch (e) {
       console.log(e)
