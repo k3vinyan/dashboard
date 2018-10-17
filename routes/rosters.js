@@ -17,6 +17,15 @@ router.post('/:today', (req, res, next) => {
   console.log('this is the roster')
 
   Roster.findOne({ date: today})
+  .exec(function(err, result){
+    if(err){
+      console.log('document doesnt exist')
+    } else {
+      console.log('hello')
+      console.log(result)
+      console.log('--------------------------')
+    }
+  })
   .then(function(result){
     console.log('document does exist')
     res.send('result: '  + result )
