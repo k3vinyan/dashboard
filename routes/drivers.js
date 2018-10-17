@@ -46,8 +46,8 @@ router.post('/', (req, res, next) => {
     const endTime = driverArr[i]['endTime'];
 
     try{
-      Driver.find({driverId: driverId, block: block, createdDate: today}).limit(1)
-      .exec( (err, doc) => {
+      const driver = Driver.find({driverId: driverId, block: block, createdDate: today}).limit(1)
+      const promise = driver.exec( (err, doc) => {
         if(doc.length) {
           console.log( doc.name + " already existed in database")
         } else {
@@ -68,7 +68,8 @@ router.post('/', (req, res, next) => {
           })
         }
       })
-      .then( () =>{
+
+      promise.then.then((doc) =>{
         Driver.find({createdDate: today})
         .exec( (err, docs) => {
           res.send(docs)
