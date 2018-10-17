@@ -18,12 +18,10 @@ router.post('/:today', (req, res, next) => {
 
   Roster.findOne({ date: today})
   .exec(function(err, result){
-    if(err){
+    if(result === null){
       console.log('document doesnt exist')
-    } else {
-      console.log('hello')
-      console.log(result)
-      console.log('--------------------------')
+    } else if(err){
+      console.log('error has occurred: ' + error)
     }
   })
   .then(function(result){
