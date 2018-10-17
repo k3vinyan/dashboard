@@ -74,6 +74,9 @@ router.post('/', (req, res, next) => {
           res.send(docs)
         })
       })
+      .catch( ()=> {
+        console.log('dhsdfsjl;ksjd;fsd;')
+      })
     } catch (e) {
       console.log(e)
       break;
