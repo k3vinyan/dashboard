@@ -15,11 +15,11 @@ router.get('/', (req, res, next) => {
 
 router.post('/:today', (req, res, next) => {
   const today = req.params.today;
-  const dataArr = JSON.parse(req.body.data)
+  const driverArr = JSON.parse(req.body.data)
 
-  for(let i = 0; i < dataArr.length; i++){
-    console.log(dataArr[i])
-  }
+  // for(let i = 0; i < dataArr.length; i++){
+  //   console.log(dataArr[i])
+  // }
 
   console.log('this is the roster')
 
@@ -50,7 +50,8 @@ router.post('/:today', (req, res, next) => {
       res.send(error)
     } else {
       console.log('----------------------------')
-      console.log(result)
+      console.log(result.blockCount)
+      console.log(driverArr)
     }
   })
   res.send(req.params.today)
