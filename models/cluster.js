@@ -9,4 +9,4 @@ const clusterSchema = new Schema({
   tbas: { type: Schema.Types.ObjectId, ref: 'Route' }
 })
 
-module.exports = mongoose.model('Route', routeSchema);
+module.exports = mongoose.model('Route', clusterSchema);
