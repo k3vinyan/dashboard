@@ -39,7 +39,6 @@ router.post('/:today', (req, res, next) => {
       })
       .save()
       .then(function(result){
-        console.log('hi')
         let driver = new Driver({
           _id: new mongoose.Types.ObjectId(),
           name: driverArr[i]['driver'],
@@ -59,7 +58,8 @@ router.post('/:today', (req, res, next) => {
     } else if(err){
       console.log('error has occurred: ' + error)
       res.send(error)
-    } else if(result.blockCount != driverArr){
+    } else if(result.blockCount != driverArr.length){
+      console.log('hi')
       for(let i = 0; i < driverArr.length; i++){
         let dID = driverArr[i]['id'];
         let dShiftLength = driverArr[i]['shiftLength'];
