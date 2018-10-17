@@ -19,7 +19,7 @@ router.get('/', (req, res, next) => {
 router.get('/count', (req, res, next) => {
   Driver.countDocuments({}, function( err, count){
     console.log( "Number of users:", count );
-    res.send('count')
+    res.send(count)
   })
 })
 
@@ -41,10 +41,9 @@ router.post('/', (req, res, next) => {
     console.log(name)
 
     try{
-      const checkDriver = Driver.find({driverId: driverId, block: block, createdDate: today}).limit(1)
-      checkDriver.exec( result => {
-        console.log(result)
-        if( result.length ) {
+      Driver.find({driverId: driverId, block: block, createdDate: today}).limit(1)
+      .exec( (err, doc) => {
+        if(doc.length) {
           console.log( result.name + " already existed in database")
         } else {
           const d = new Driver({
