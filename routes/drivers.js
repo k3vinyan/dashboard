@@ -16,6 +16,7 @@ router.get('/', (req, res, next) => {
   })
 })
 
+//for testing
 router.get('/count', (req, res, next) => {
   Driver.countDocuments({})
   .exec( (err, count )=> {
@@ -23,7 +24,7 @@ router.get('/count', (req, res, next) => {
       res.status(500).send(err)
     } else {
       console.log( "Number of users:", count );
-      res.status(200).send(count)
+      res.send({count: count})
     }
   })
 
@@ -43,8 +44,6 @@ router.post('/', (req, res, next) => {
     const shiftLength = driverArr[i]['shiftLength'];
     const startTime = driverArr[i]['startTime'];
     const endTime = driverArr[i]['endTime'];
-
-    console.log(name)
 
     try{
       Driver.find({driverId: driverId, block: block, createdDate: today}).limit(1)
@@ -68,6 +67,12 @@ router.post('/', (req, res, next) => {
             if(err) console.log(err)
           })
         }
+      })
+      .then( () =>{
+        Driver.find({createdDate: today})
+        .exec( (err, docs) => {
+          res.send(docs)
+        })
       })
     } catch (e) {
       console.log(e)
