@@ -10,15 +10,25 @@ router.get('/', (req, res, next) => {
       res.send(data)
     })
     .catch( error => {
-      res.status(500).send('error: ' + error)
+      res.status(500).send({err: error})
     })
 })
 
+router.get('/:today', (req, res, next) => {
+  const today = req.params.today;
+  const r = Roster.find({ date: today})
+  .then(function(result){
+    res.send(result)
+  })
+  .catch(function(error){
+    res.status(500).send({err: error})
+  })
+})
 router.post('/:today', (req, res, next) => {
   const today = req.params.today;
   const driverArr = JSON.parse(req.body.data)
 
-  r = Roster.findOne({ date: today})
+  const r = Roster.findOne({ date: today})
   r.exec(function(err, result){
     if(result === null){
       console.log('document doesn\'t exist')
@@ -67,11 +77,11 @@ router.post('/:today', (req, res, next) => {
           })
           .save()
         }
-
+        res.send(result)
       }
     }
   })
-  res.send(result)
+  r
 })
 
 router.get('/delete/:today', (req, res, next) => {
