@@ -65,14 +65,15 @@ router.post('/', (req, res, next) => {
       }
     })
     .then( data => {
-      const driver = Driver.find({createdDate: today})
-      driver.exec()
-      .then( data => {
-        res.send(data)
-      })
-      .catch( err => {
-        res.status(500).send(err)
-      })
+      // const driver = Driver.find({createdDate: today})
+      // driver.exec()
+      // .then( data => {
+      //   res.send(data)
+      // })
+      // .catch( err => {
+      //   res.status(500).send(err)
+      // })
+      res.send(data)
     })
     .catch( err => {
       res.status(500).send(err)
