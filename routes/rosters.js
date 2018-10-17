@@ -13,7 +13,9 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/:today', (req, res, next) => {
-  const today = req.params.today
+  const today = req.params.today;
+  console.log(today);
+  console.log(req.body)
   const data = JSON.parse(req.body.data);
   console.log(data)
   console.log(data.length)
@@ -21,11 +23,6 @@ router.post('/:today', (req, res, next) => {
     console.log(data[i])
   }
 
-  for(let i in data){
-    console.log(i);
-    console.log(data[i])
-    console.log('-----------------------')
-  }
   console.log('this is the roster')
 
   Roster.findOne({ date: today})
