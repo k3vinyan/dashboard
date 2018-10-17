@@ -23,7 +23,7 @@ router.post('/:today', (req, res, next) => {
 
   console.log('this is the roster')
 
-  r Roster.findOne({ date: today})
+  r = Roster.findOne({ date: today})
   r.exec(function(err, result){
     if(result === null){
       console.log('document doesn\'t exist')
