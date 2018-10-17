@@ -10,6 +10,9 @@ const moment = require('moment');
 
 const blockRoutes = require('./routes/blocks');
 const clusterRoutes = require('./routes/clusters');
+const bodyParser = require('body-parser');
+
+
 
 const port = process.env.PORT;
 
@@ -24,10 +27,10 @@ db.once('open', () => {
 });
 
 app.use(express.static('dist'));
+app.use(bodyParser.urlencoded({ extended: false }))
 
 io.on('connection', (socket) => {
   console.log('user connected')
-  //console.log(moment().format("MM-DD-YYYY"))
   date = moment().format("MM-DD-YYYY");
 
   socket.on('newBlock', (data)=>{
