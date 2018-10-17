@@ -15,6 +15,11 @@ router.get('/', (req, res, next) => {
 router.post('/:today', (req, res, next) => {
   const today = req.params.today
   const data = req.body.data;
+  console.log(data)
+  console.log(data.length)
+  for(let i = 0; i < data.length; i++){
+    console.log(data[i])
+  }
 
   for(let i in data){
     console.log(i);
