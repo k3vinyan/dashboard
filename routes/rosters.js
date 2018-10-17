@@ -15,8 +15,7 @@ router.get('/', (req, res, next) => {
 router.post('/:today', (req, res, next) => {
   const today = req.params.today
   console.log('this is the roster')
-  console.log(Roster.find({date: req.params.today}))
-
+  
   Roster.findOneAndUpdate({ date: today }, (error, result) => {
     if(!error){
       console.log('document doesnt exist');
