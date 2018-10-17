@@ -30,7 +30,7 @@ function loop(array, start, end, model){
           }
         })
 
-        loopTbas(array, i, stop, m);
+        loop(array, i, stop, m);
       }
     }, 500)
 }
