@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
 const Roster = require('../models/roster');
+const Driver = require('../models/driver');
 
 router.get('/', (req, res, next) => {
   Roster.find({})
@@ -17,17 +18,10 @@ router.post('/:today', (req, res, next) => {
   const today = req.params.today;
   const driverArr = JSON.parse(req.body.data)
 
-  // for(let i = 0; i < dataArr.length; i++){
-  //   console.log(dataArr[i])
-  // }
-
-  console.log('this is the roster')
-
   r = Roster.findOne({ date: today})
   r.exec(function(err, result){
     if(result === null){
       console.log('document doesn\'t exist')
-
       const roster = new Roster({
         _id: new mongoose.Types.ObjectId(),
         date: today,
@@ -35,26 +29,49 @@ router.post('/:today', (req, res, next) => {
       })
       .save()
       .then(function(result){
-        console.log('result')
-        console.log(result)
+        let driver = new Driver({
+          _id: new mongoose.Types.ObjectId(),
+          name: driverArr[i]['driver'],
+          driverId: driverArr[i]['id'],
+          shiftLength: driverArr[i]['shiftLength'],
+          startTime: driverArr[i]['startTme'],
+          endTime: driverArr[i]['endTime'],
+          checkin: false,
+          block: result._id
+        })
+        .save()
       })
       .catch(function(error){
         console.log('error')
         console.log(error)
       })
-
-      let blocks = [];
-
     } else if(err){
       console.log('error has occurred: ' + error)
       res.send(error)
-    } else {
-      console.log('----------------------------')
-      console.log(result.blockCount)
-      console.log(driverArr)
+    } else if(result.blockCount != driverArr){
+      for(let i = 0; i < driverArr.length; i++){
+        let dID = driverArr[i]['id'];
+        let dShiftLength = driverArr[i]['shiftLength'];
+        if(Driver.findOne({driverId: dID, ShiftLength: dShiftLength}) === null){
+          console.log("Driver already existed!")
+        } else {
+          let driver = new Driver({
+            _id: new mongoose.Types.ObjectId(),
+            name: driverArr[i]['driver'],
+            driverId: driverArr[i]['id'],
+            shiftLength: driverArr[i]['shiftLength'],
+            startTime: driverArr[i]['startTme'],
+            endTime: driverArr[i]['endTime'],
+            checkin: false,
+            block: result._id
+          })
+          .save()
+        }
+
+      }
     }
   })
-  res.send(req.params.today)
+  res.send(result)
 })
 
 router.get('/delete/:today', (req, res, next) => {
