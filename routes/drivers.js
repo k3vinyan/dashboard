@@ -16,16 +16,18 @@ router.get('/', (req, res, next) => {
   })
 })
 
-// router.get('/count', (req, res, next) => {
-//   Driver.countDocuments({}, function( err, count){
-//     if(err){
-//       res.status(500).send({err: err})
-//     } else {
-//       console.log( "Number of users:", count );
-//       res.status(200).send(count)
-//     }
-//   })
-// })
+router.get('/count', (req, res, next) => {
+  Driver.countDocuments({})
+  .exec( (err, count )=> {
+    if(err){
+      res.status(500).send(err)
+    } else {
+      console.log( "Number of users:", count );
+      res.status(200).send(count)
+    }
+  })
+
+})
 
 router.post('/', (req, res, next) => {
   const today = moment().format("MM-DD-YYYY");
@@ -48,7 +50,7 @@ router.post('/', (req, res, next) => {
       Driver.find({driverId: driverId, block: block, createdDate: today}).limit(1)
       .exec( (err, doc) => {
         if(doc.length) {
-          console.log( result.name + " already existed in database")
+          console.log( doc.name + " already existed in database")
         } else {
           const d = new Driver({
             _id: new mongoose.Types.ObjectId(),
