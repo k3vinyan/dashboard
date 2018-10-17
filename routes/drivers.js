@@ -64,9 +64,6 @@ router.post('/', (req, res) => {
         })
       }
     })
-    .catch( err => {
-      console.log(err)
-    })
   }
   const driver = Driver.find({createdDate: today})
   driver.exec()
