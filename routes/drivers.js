@@ -41,7 +41,7 @@ router.post('/', (req, res, next) => {
           const d = new Driver({
             _id: new mongoose.Types.ObjectId(),
             name: driverArr[i]['driver'],
-            block: driverArr[i]['block']
+            block: driverArr[i]['block'],
             driverId: driverArr[i]['id'],
             shiftLength: driverArr[i]['shiftLength'],
             startTime: driverArr[i]['startTime'],
