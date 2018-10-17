@@ -77,7 +77,7 @@ router.post('/:today', (req, res, next) => {
             checkin: false,
             block: result._id
           })
-          .save( function(err){
+          driver.save(function(err){
             if(err){
               console.log(err)
             } else{

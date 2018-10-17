@@ -9,7 +9,7 @@ const driverSchema = new Schema({
   startTime: String,
   endTime: String,
   checkin: Boolean,
-  block: { type: Schema.Types.ObjectId, ref: 'Block'}
+  block: { type: Schema.Types.ObjectId, ref: 'Block' }
 })
 
 module.exports = mongoose.model('Driver', driverSchema);
