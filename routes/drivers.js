@@ -37,6 +37,7 @@ router.post('/', (req, res, next) => {
     try{
       const checkDriver = Driver.find({driverId: driverId, block: block, createdDate: today})
       checkDriver.exec( result => {
+        console.log(result)
         if( result === null ) {
           const d = new Driver({
             _id: new mongoose.Types.ObjectId(),
