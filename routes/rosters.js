@@ -77,11 +77,9 @@ router.post('/:today', (req, res, next) => {
           })
           .save()
         }
-        res.send(result)
       }
     }
   })
-  r
 })
 
 router.get('/delete/:today', (req, res, next) => {
