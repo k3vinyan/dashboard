@@ -73,11 +73,8 @@ router.post('/', (req, res, next) => {
           res.status(500).send(err)
         })
       })
-      .catch( err => {
-        res.status(500).send(err)
-      })
     } catch (e) {
-      console.log(e)
+      console.log("catch error: ", e)
       break;
     }
   }
