@@ -66,16 +66,6 @@ router.post('/', (req, res, next) => {
         }
         return promise;
       })
-
-      promise.then((doc) =>{
-        Driver.find({createdDate: today})
-        .exec( (err, docs) => {
-          res.send(docs)
-        })
-      })
-      .catch( ()=> {
-        console.log('dhsdfsjl;ksjd;fsd;')
-      })
     } catch (e) {
       console.log(e)
       break;
