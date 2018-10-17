@@ -60,6 +60,7 @@ router.post('/:today', (req, res, next) => {
       res.send(error)
     } else if(result.blockCount != driverArr.length){
       console.log('hi')
+      let count = 0;
       for(let i = 0; i < driverArr.length; i++){
         let dID = driverArr[i]['id'];
         let dShiftLength = driverArr[i]['shiftLength'];
@@ -80,6 +81,16 @@ router.post('/:today', (req, res, next) => {
         }
       }
     }
+  })
+})
+
+router.get('/drivers', (req, res, next) => {
+  Driver.find({})
+  .then(function(result){
+    res.send(result)
+  })
+  .catch(function(err){
+    res.send(err)
   })
 })
 
