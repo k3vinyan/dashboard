@@ -40,20 +40,14 @@ io.on('connection', (socket) => {
     const startTime = data['startTime'];
     const endTime = data['endTime'];
     const check = data['checkin'];
+    const today = moment().format("MM-DD-YYYY");
+    const query = {driverId: driverId, startTime: startTime, endTime: endTime, createdDate: today};
+    Driver.findOneAndUpdate(query, {checkin: check}, (err, result) => {
+        if(err) console.log(err)
 
-    Driver.find({driverId: driverId, startTime: startTime, endTime: endTime}).limit(1)
-    .exec()
-    .then( d => {
-      d.checkin = check;
-      d.save( e => {
-        if(e) console.log('unable to saved: ' + e)
-        console.log(d)
-        socket.broadcast.emit('updateCheck', d)
-      })
+        console.log(result)
     })
-    .catch( e => {
-      console.log("Check error: " + e)
-    })
+
   })
 
 
