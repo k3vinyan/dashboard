@@ -14,12 +14,10 @@ router.get('/', (req, res, next) => {
 
 router.post('/:today', (req, res, next) => {
   const today = req.params.today;
-  console.log(req.body)
-  console.log(req.body.data)
-  console.log("-----------------------------------------------")
-  console.log(JSON.parse(req.body.data))
-  console.log("-----------------------------------------------")
-
+  const dataArr = JSON.parse(req.body.data)
+  for(let i = 0; i < dataArr.length; i++){
+    console.log(dataArr[i])
+  }
 
   console.log('this is the roster')
 
