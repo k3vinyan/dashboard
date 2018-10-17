@@ -64,6 +64,9 @@ router.post('/', (req, res) => {
         })
       }
     })
+    .catch( err => {
+      console.log(err)
+    })
   }
   const driver = Driver.find({createdDate: today})
   driver.exec()
@@ -73,7 +76,6 @@ router.post('/', (req, res) => {
   .catch( err => {
     res.status(500).send(err)
   })
-  res.end()
 })
 
 router.delete('/deleteAll', (req, res, next) => {
