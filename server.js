@@ -8,6 +8,7 @@ const Block = require('./models/block');
 const BlockHtml = require('./models/blockhtml');
 const moment = require('moment');
 
+const rosterRoutes = require('./routes/rosters');
 const blockRoutes = require('./routes/blocks');
 const clusterRoutes = require('./routes/clusters');
 const bodyParser = require('body-parser');
@@ -58,6 +59,7 @@ io.on('connection', (socket) => {
   })
 })
 
+app.use('/rosters', rosterRoutes);
 app.use('/blocks', blockRoutes);
 app.use('/checkout', clusterRoutes);
 
