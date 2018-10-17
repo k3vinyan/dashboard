@@ -42,41 +42,41 @@ router.post('/', (req, res, next) => {
     const startTime = driverArr[i]['startTime'];
     const endTime = driverArr[i]['endTime'];
 
-    try{
-      const driver = Driver.find({driverId: driverId, block: block, createdDate: today}).limit(1)
-      const promise = driver.exec( (err, doc) => {
-        if(doc.length) {
-          console.log( doc.name + " already existed in database")
-        } else {
-          const d = new Driver({
-            _id: new mongoose.Types.ObjectId(),
-            name: name,
-            block: block,
-            driverId: driverId,
-            shiftLength: shiftLength,
-            startTime: startTime,
-            endTime: endTime,
-            createdDate: today,
-            checkin: false
-            //block: rId
-          })
-          d.save(err => {
-            if(err) console.log(err)
-          })
-        }
-        const driver = Driver.find({createdDate: today})
-        driver.exec()
-        .then( data => {
-          res.send(data)
+    const driver = Driver.find({driverId: driverId, block: block, createdDate: today}).limit(1)
+    driver.exec( (err, doc) => {
+      if(doc.length) {
+        console.log( doc.name + " already existed in database")
+      } else {
+        const d = new Driver({
+          _id: new mongoose.Types.ObjectId(),
+          name: name,
+          block: block,
+          driverId: driverId,
+          shiftLength: shiftLength,
+          startTime: startTime,
+          endTime: endTime,
+          createdDate: today,
+          checkin: false
+          //block: rId
         })
-        .then( err => {
-          res.status(500).send(err)
+        d.save(err => {
+          if(err) console.log(err)
         })
+      }
+    })
+    .then( data => {
+      const driver = Driver.find({createdDate: today})
+      driver.exec()
+      .then( data => {
+        res.send(data)
       })
-    } catch (e) {
-      console.log("catch error: ", e)
-      break;
-    }
+      .catch( err => {
+        res.status(500).send(err)
+      })
+    })
+    .catch( err => {
+      res.status(500).send(err)
+    })
   }
 })
 
