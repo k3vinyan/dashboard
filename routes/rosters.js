@@ -6,18 +6,18 @@ const Driver = require('../models/driver');
 
 
 function loop(array, start, end){
-  let index = start;
+  let i = start;
   let stop = end;
 
   setTimeout(function(){
-      if(index < end){
+      if(i < end){
         let driver = new Driver({
           _id: new mongoose.Types.ObjectId(),
-          name: driverArr[i]['driver'],
-          driverId: driverArr[i]['id'],
-          shiftLength: driverArr[i]['shiftLength'],
-          startTime: driverArr[i]['startTme'],
-          endTime: driverArr[i]['endTime'],
+          name: array[i]['driver'],
+          driverId: array[i]['id'],
+          shiftLength: array[i]['shiftLength'],
+          startTime: array[i]['startTme'],
+          endTime: array[i]['endTime'],
           checkin: false,
           block: result._id
         })
@@ -29,7 +29,7 @@ function loop(array, start, end){
           }
         })
 
-        loopTbas(array, index, stop);
+        loopTbas(array, i, stop);
       }
     }, 500)
 }
