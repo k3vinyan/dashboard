@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
-const moment = require('mosment');
+const moment = require('moment');
 
 const Driver = require('../models/driver');
 const Roster = require('../models/roster');
