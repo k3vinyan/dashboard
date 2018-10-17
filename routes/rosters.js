@@ -14,7 +14,11 @@ router.get('/', (req, res, next) => {
 
 router.post('/:today', (req, res, next) => {
   console.log(req.params.today)
+
+  console.log(Roster.find({date: today}))
   res.send(req.params.today)
+
+
 })
 
 module.exports = router;
