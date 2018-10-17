@@ -5,9 +5,10 @@ const Roster = require('../models/roster');
 const Driver = require('../models/driver');
 
 
-function loop(array, start, end){
+function loop(array, start, end, model){
   let i = start;
   let stop = end;
+  let m = model;
 
   setTimeout(function(){
       if(i < end){
@@ -19,7 +20,7 @@ function loop(array, start, end){
           startTime: array[i]['startTme'],
           endTime: array[i]['endTime'],
           checkin: false,
-          block: result._id
+          block: model._id
         })
         driver.save(function(err){
           if(err){
@@ -29,7 +30,7 @@ function loop(array, start, end){
           }
         })
 
-        loopTbas(array, i, stop);
+        loopTbas(array, i, stop, m);
       }
     }, 500)
 }
@@ -91,7 +92,7 @@ router.post('/:today', (req, res, next) => {
     } else if(result.blockCount != driverArr.length){
       console.log('hi')
       let count = 0;
-      loop(driverArr, 0, driverArr.length)
+      loop(driverArr, 0, driverArr.length, result)
 
 
         // let dID = driverArr[i]['id'];
