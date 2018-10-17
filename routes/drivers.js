@@ -27,35 +27,53 @@ router.post('/', (req, res, next) => {
 
   //need to check for dup
   for(let i = 0; i < driverArr.length; i++){
+    const name = driverArr[i]['name'];
+    const driverId = driverArr[i]['id'];
+    const block = driverArr[i]['block'];
+    const shiftLength = driverArr[i]['shiftLength'];
+    const startTime = driverArr[i]['startTime'];
+    const endTime = driverArr[i]['endTime'];
+
     try{
-      let d = new Driver({
-        _id: new mongoose.Types.ObjectId(),
-        name: driverArr[i]['driver'],
-        driverId: driverArr[i]['id'],
-        shiftLength: driverArr[i]['shiftLength'],
-        startTime: driverArr[i]['startTme'],
-        endTime: driverArr[i]['endTime'],
-        createdDate: today,
-        checkin: false
-        //block: rId
-      })
-      d.save(err => {
-        if(err) console.log(err)
-        console.log('saved!')
+      const checkDriver = Driver.find({driverId: driverId, block: block, createdDate: today})
+      checkDriver.exec( result => {
+        if( result === null ) {
+          const d = new Driver({
+            _id: new mongoose.Types.ObjectId(),
+            name: driverArr[i]['driver'],
+            block: driverArr[i]['block']
+            driverId: driverArr[i]['id'],
+            shiftLength: driverArr[i]['shiftLength'],
+            startTime: driverArr[i]['startTime'],
+            endTime: driverArr[i]['endTime'],
+            createdDate: today,
+            checkin: false
+            //block: rId
+          })
+          d.save(err => {
+            if(err) console.log(err)
+            console.log('saved!')
+          })
+        } else {
+          console.log( result.name + " already existed in database")
+        }
       })
     } catch (e) {
       console.log(e)
       break;
     }
   }
-  res.send('drivers saved sucessfully!')
+  res.send('All drivers saved sucessfully!')
 })
 
-router.delete('/', (req, res, next) => {
+router.delete('/deleteAll', (req, res, next) => {
   Driver.deleteMany().exec()
   .then( () => {
     console.log('deleted!!!')
-    res.send("You deleted everything.... :( " + data)
+    res.send("You deleted everything.... :( " )
+  })
+  .catch( error => {
+    res.send({ err: error})
   })
 })
 
@@ -65,6 +83,9 @@ router.delete('/:today', (req, res, next) => {
   Driver.deleteMany({date: createdDate}).exec()
     .then( data => {
       res.send("You deleted everything.... :( " + data)
+    })
+    .catch( error => {
+      res.send( {error: error })
     })
 })
 module.exports = router;
