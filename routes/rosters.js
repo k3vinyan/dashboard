@@ -39,6 +39,7 @@ router.post('/:today', (req, res, next) => {
       })
       .save()
       .then(function(result){
+        console.log('hi')
         let driver = new Driver({
           _id: new mongoose.Types.ObjectId(),
           name: driverArr[i]['driver'],
