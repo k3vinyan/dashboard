@@ -50,7 +50,7 @@ router.post('/:today', (req, res, next) => {
       res.send(error)
     } else {
       console.log('----------------------------')
-      console.log(r.blockCount)
+      console.log(result)
     }
   })
   res.send(req.params.today)
