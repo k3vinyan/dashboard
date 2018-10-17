@@ -37,7 +37,18 @@ io.on('connection', (socket) => {
   date = moment().format("MM-DD-YYYY");
 
   socket.on('check', (data)=>{
-    console.log(data)
+    const driverId = data['driverId'];
+    const startTime = data['startTime'];
+    const endTime = data['endTime'];
+
+    Driver.find({driverId: driverId, startTime: startTime, endTime: endTime}).limit(1)
+    .exec()
+    .then( d => {
+      console.log(d)
+    })
+    .catch( e => {
+      console.log("Check error: " + e)
+    })
   })
 
 
