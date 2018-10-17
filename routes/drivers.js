@@ -30,7 +30,7 @@ router.get('/count', (req, res, next) => {
 
 })
 
-router.post('/', (req, res, next) => {
+router.post('/', (req, res) => {
   const today = moment().format("MM-DD-YYYY");
   const driverArr = JSON.parse(req.body.data)
 
