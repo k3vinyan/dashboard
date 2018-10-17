@@ -66,7 +66,12 @@ router.post('/', (req, res, next) => {
       break;
     }
   }
-  res.send('All drivers saved sucessfully!')
+  Driver.count({}, function( err, count){
+    console.log( "Number of users:", count );
+    res.send('All drivers saved sucessfully!')
+  })
+
+
 })
 
 router.delete('/deleteAll', (req, res, next) => {
