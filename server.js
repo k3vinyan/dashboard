@@ -11,6 +11,7 @@ const moment = require('moment');
 const rosterRoutes = require('./routes/rosters');
 const blockRoutes = require('./routes/blocks');
 const clusterRoutes = require('./routes/clusters');
+const driverRoutes = require('./routes/drivers');
 const bodyParser = require('body-parser');
 
 
@@ -62,6 +63,7 @@ io.on('connection', (socket) => {
 app.use('/rosters', rosterRoutes);
 app.use('/blocks', blockRoutes);
 app.use('/checkout', clusterRoutes);
+app.use('/drivers', driverRoutes);
 
 http.listen(port, function(){
   console.log('listening on port: ' + port)
