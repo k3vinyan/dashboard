@@ -51116,7 +51116,6 @@ function (_React$Component) {
   _createClass(RouteRow, [{
     key: "render",
     value: function render() {
-      console.log(this.props);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, this.props.routes.map(function (route, i) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
           key: route._id

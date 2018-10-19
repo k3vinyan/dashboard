@@ -6,8 +6,6 @@ export default class RouteRow extends React.Component {
   }
 
   render(){
-    console.log(this.props)
-
     return(
       <tbody>
       {
