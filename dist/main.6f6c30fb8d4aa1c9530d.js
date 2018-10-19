@@ -184,14 +184,13 @@ function (_React$Component) {
 
       for (var i = 0; i < drivers.length; i++) {
         if (drivers[i]._id == data._id) {
-          var newArray = drivers[i] = data;
+          drivers[i] = data;
+          var newArray = drivers;
           console.log(newArray);
 
           _this.setState({
             drivers: _toConsumableArray(_this.state.drivers)
           });
-
-          console.log(_this.state.drivers);
         }
       }
     });
