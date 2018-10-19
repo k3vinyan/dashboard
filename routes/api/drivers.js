@@ -70,7 +70,7 @@ router.post('/', (req, res) => {
   })
 })
 
-router.delete('/deleteAll', (req, res, next) => {
+router.delete('/reset', (req, res, next) => {
   Driver.deleteMany().exec()
   .then( () => {
     console.log('deleted!!!')
