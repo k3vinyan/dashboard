@@ -19,10 +19,7 @@ document.body.appendChild(app);
 const socket = io('http://amazon-yard.herokuapp.com')
 
 function driverListener(cb){
-  socket.on('checkupdated', (data) => {
-    console.log('hi')
-    console.log(data)
-  })
+  socket.on('checkupdated', (data) => cb(null, data))
 }
 
 class App extends React.Component {
@@ -35,8 +32,13 @@ class App extends React.Component {
         today: moment().format('MM-DD-YYYY'),
         items: [],
     }
-    driverListener()
-    
+    driverListener((err, data) => {
+      const drivers = this.state.drivers;
+      for(let i = 0; i < drivers.length; i++){
+        console.log(drivers[i])
+      }
+    })
+
     this.filterDriverList = this.filterDriverList.bind(this);
     this.filterRouteList = this.filterRouteList.bind(this);
   }

@@ -148,8 +148,7 @@ var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_12___default()('http://am
 
 function driverListener(cb) {
   socket.on('checkupdated', function (data) {
-    console.log('hi');
-    console.log(data);
+    return cb(null, data);
   });
 }
 
@@ -171,7 +170,13 @@ function (_React$Component) {
       today: moment__WEBPACK_IMPORTED_MODULE_3___default()().format('MM-DD-YYYY'),
       items: []
     };
-    driverListener();
+    driverListener(function (err, data) {
+      var drivers = _this.state.drivers;
+
+      for (var i = 0; i < drivers.length; i++) {
+        console.log(drivers[i]);
+      }
+    });
     _this.filterDriverList = _this.filterDriverList.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.filterRouteList = _this.filterRouteList.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
