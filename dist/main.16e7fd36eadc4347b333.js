@@ -178,7 +178,6 @@ function (_React$Component) {
         if (drivers[i]._id == data._id) {
           drivers[i] = data;
           var newArray = drivers;
-          console.log(newArray);
 
           _this.setState({
             drivers: newArray
@@ -186,6 +185,7 @@ function (_React$Component) {
         }
       }
     });
+    _this.driverListener = _this.driverListener.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.filterDriverList = _this.filterDriverList.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.filterRouteList = _this.filterRouteList.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;

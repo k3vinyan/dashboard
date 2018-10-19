@@ -39,12 +39,12 @@ class App extends React.Component {
         if(drivers[i]._id == data._id){
           drivers[i] = data;
           const newArray = drivers;
-          console.log(newArray)
+
           this.setState({ drivers: newArray})
         }
       }
     })
-
+    this.driverListener = this.driverListener.bind(this)
     this.filterDriverList = this.filterDriverList.bind(this);
     this.filterRouteList = this.filterRouteList.bind(this);
   }
