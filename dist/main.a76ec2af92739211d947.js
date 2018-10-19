@@ -175,7 +175,13 @@ function (_React$Component) {
 
       for (var i = 0; i < drivers.length; i++) {
         if (drivers[i]._id == data._id) {
-          console.log(drivers[i]);
+          _this.setState(update(_this.state, {
+            drivers: drivers[i]
+          }));
+
+          console.log(_this.state.drivers);
+          console.log(_this.state.drivers[i]);
+          break;
         }
       }
     });
