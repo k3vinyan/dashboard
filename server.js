@@ -47,11 +47,14 @@ io.on('connection', (socket) => {
     const check = data.checkin;
     console.log(data)
     console.log(query)
-    Driver.findOneAndUpdate(query, {checkin: check}, (err, result) => {
-        if(err) return err;
+    const driver = Driver.findOneAndUpdate(query, {checkin: check})
+    driver.exec()
+      .then( result => {
         console.log(result)
-        console.log("Saved successful!")
-    })
+      })
+      .then( e => {
+        console.log(e)
+      })
 
   })
 })
