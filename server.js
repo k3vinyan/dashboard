@@ -7,7 +7,6 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const Block = require('./models/block');
 const Driver = require('./models/driver');
-//const BlockHtml = require('./models/blockhtml');
 const moment = require('moment');
 
 const rosterRoutes = require('./routes/api/rosters');
@@ -46,13 +45,7 @@ io.on('connection', (socket) => {
     const query = {createdDate: today, _id: _id};
     const check = data.checkin;
     console.log(check)
-    const driver = Driver.findOneAndUpdate(query, $set: {checkin: check})
-    driver.exec( (err, doc) => {
-      if(err){ res.send(err) }
-
-      console.log(doc)
-    })
-
+    Driver.findOneAndUpdate(query, $set: {checkin: check})
   })
 })
 
