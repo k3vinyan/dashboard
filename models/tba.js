@@ -10,6 +10,7 @@ const tbaSchema = new Schema({
   postal: String,
   status: String,
   associate: String,
+  createdDate: String,
   route: { type: Schema.Types.ObjectId, ref: 'Route' },
   cluster:  { type: Schema.Types.ObjectId, ref: 'Cluster' }
 })

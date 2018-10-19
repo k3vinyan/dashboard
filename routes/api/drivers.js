@@ -3,8 +3,7 @@ const express = require('express');
 const router = express.Router();
 const moment = require('moment');
 
-const Driver = require('../models/driver');
-const Roster = require('../models/roster');
+const Driver = require('../../models/driver');
 
 router.get('/', (req, res, next) => {
   const drivers = Driver.find({})
@@ -13,6 +12,17 @@ router.get('/', (req, res, next) => {
   })
   .catch( err => {
     res.status(500).send({error: err})
+  })
+})
+
+router.get('/:today', (req, res, next) => {
+  const today = req.params.today
+  const drivers = Driver.find({ createdDate: today})
+  drivers.then(result => {
+    res.send(result)
+  })
+  .catch( err => {
+    res.status(500).send(err)
   })
 })
 

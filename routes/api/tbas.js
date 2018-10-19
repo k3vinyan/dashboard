@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Tba = require('../models/tba');
+const Tba = require('../../models/tba');
 
 router.get('/', (req, res, next) => {
   Tba.find({})
@@ -11,6 +11,8 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
+  console.log('this is the tba post route')
+  console.log(req.body)
   const tba = req.body.tba;
   const shipOptions = req.body.shipOptions;
   const arrivalDate = req.body.arrivalDate;
@@ -19,7 +21,7 @@ router.post('/', (req, res, next) => {
   const status = req.body.status;
   const associate = req.body.associate;
 
-  const tba = new Tba({
+  const t = new Tba({
     tba: tba,
     shipOptions: shipOptions,
     arrivalDate: arrivalDate,
@@ -37,4 +39,4 @@ router.post('/', (req, res, next) => {
   })
 })
 
-router.get('/:date/:cluster')
+module.exports = router;

@@ -4,12 +4,16 @@ const Schema = mongoose.Schema;
 const routeSchema = new Schema({
   _id: mongoose.Schema.Types.ObjectId,
   type: String,
+  name: String,
+  cluster: String,
+  totalPackage: String,
   atStation: Number,
   betweenStation: Number,
   outForDelivery: Number,
   others: Number,
-  tbas: [{ type: Schema.Types.ObjectId, ref: 'Tba' }],
-  cluster: { type: Schema.Types.ObjectId, ref: 'Cluster' }
+  createdDate: String,
+  tbas: [Schema.Types.Mixed],
+  postals: [Schema.Types.Mixed]
 })
 
-model.exports = mongoose.model('Route', routeSchema);
+module.exports = mongoose.model('Route', routeSchema);

@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-const Block = require('../models/block');
-const BlockHtml = require('../models/blockhtml');
+const Block = require('../../models/block');
 
 router.get('/', (req, res, next) => {
   Block.find({})
@@ -16,6 +15,8 @@ router.post('/:today', (req, res, next) => {
   console.log(req.body)
   const today = req.body.today;
   console.log(today);
+
+  Block.find({date: today, })
 
   res.send(today + "hello");
 })

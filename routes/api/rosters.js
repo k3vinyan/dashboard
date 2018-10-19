@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
-const Roster = require('../models/roster');
-const Driver = require('../models/driver');
+const Roster = require('../../models/roster');
+const Driver = require('../../models/driver');
 
 
 function loop(array, start, end, model){

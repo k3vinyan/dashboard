@@ -3,10 +3,10 @@ const Schema = mongoose.Schema;
 
 const clusterSchema = new Schema({
   _id: mongoose.Schema.Types.ObjectId,
-  date: String,
+  createdDate: String,
   cluster: String,
   routes: [{ type: Schema.Types.ObjectId, ref: 'Route' }],
   tbas: { type: Schema.Types.ObjectId, ref: 'Route' }
 })
 
-module.exports = mongoose.model('Route', clusterSchema);
+module.exports = mongoose.model('Cluster', clusterSchema);

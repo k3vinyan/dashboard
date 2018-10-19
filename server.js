@@ -1,22 +1,27 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const mongoose = require('mongoose');
 require('dotenv').config();
 const Block = require('./models/block');
 const Driver = require('./models/driver');
-const BlockHtml = require('./models/blockhtml');
+//const BlockHtml = require('./models/blockhtml');
 const moment = require('moment');
 
-const rosterRoutes = require('./routes/rosters');
-const blockRoutes = require('./routes/blocks');
-const clusterRoutes = require('./routes/clusters');
-const driverRoutes = require('./routes/drivers');
+const rosterRoutes = require('./routes/api/rosters');
+const blockRoutes = require('./routes/api/blocks');
+const clusterRoutes = require('./routes/api/clusters');
+const driverRoutes = require('./routes/api/drivers');
+const routeRoutes = require('./routes/api/routes');
+const tbaRoutes = require('./routes/api/tbas');
+
 const bodyParser = require('body-parser');
+app.use(bodyParser.json({limit: '10mb', extended: true}))
+app.use(bodyParser.urlencoded({limit: '10mb', extended: true, parameterLimit: 1000000}))
 
-
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 mongoose.connect('mongodb://' + process.env.USERNAME + ':' + process.env.PW +
   '@ds231133.mlab.com:31133/socketserver',
@@ -43,31 +48,22 @@ io.on('connection', (socket) => {
     const today = moment().format("MM-DD-YYYY");
     const query = {driverId: driverId, startTime: startTime, endTime: endTime, createdDate: today};
     Driver.findOneAndUpdate(query, {checkin: check}, (err, result) => {
-        if(err) console.log(err)
-
-        console.log(result)
+        if(err) return err;
+        console.log("Saved successful!")
     })
-
-  })
-
-
-  socket.on('sameBlock', (data) => {
-    const b = BlockHtml.findOne()
-    b.updateOne({html: data})
-      .then( data => {
-        console.log("successful: " + data)
-      })
-      .catch(err => {
-        console.log("error: " + err)
-      })
 
   })
 })
 
-app.use('/rosters', rosterRoutes);
-app.use('/blocks', blockRoutes);
-app.use('/checkout', clusterRoutes);
-app.use('/drivers', driverRoutes);
+app.use('/api/rosters', rosterRoutes);
+app.use('/api/blocks', blockRoutes);
+app.use('/api/routes', routeRoutes);
+app.use('/api/drivers', driverRoutes);
+app.use('/api/tbas', tbaRoutes);
+
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname,'/dist/index.html'));
+});
 
 http.listen(port, function(){
   console.log('listening on port: ' + port)
