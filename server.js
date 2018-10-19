@@ -46,7 +46,11 @@ io.on('connection', (socket) => {
     console.log(_id)
     console.log(check)
     Driver.findById(_id, function(err, doc){
-      console.log(doc)
+      doc.set({checkin: check})
+      doc.save(function(err, result){
+        if(err) console.log(err);
+        console.log('saved!')
+      })
     })
     // Driver.findOneAndUpdate(query, {$set: {checkin: check}}, {new: true, upsert: true}, function(err, result){
     //   console.log(result)
