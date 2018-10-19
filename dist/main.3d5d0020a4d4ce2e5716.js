@@ -170,29 +170,30 @@ function (_React$Component) {
       today: moment__WEBPACK_IMPORTED_MODULE_3___default()().format('MM-DD-YYYY'),
       items: []
     };
-    driverListener(function (err, data) {
-      var drivers = _this.state.drivers;
+    _this.driverListener = _this.driverListener.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.filterDriverList = _this.filterDriverList.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.filterRouteList = _this.filterRouteList.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
+  }
+
+  _createClass(App, [{
+    key: "driverListener",
+    value: function driverListener(err, data) {
+      var drivers = this.state.drivers;
       console.log('hi');
 
       for (var i = 0; i < drivers.length; i++) {
         if (drivers[i]._id == data._id) {
           drivers[i] = data;
           var newArray = drivers;
-
-          _this.setState({
+          this.setState({
             drivers: newArray
           });
         }
       }
-    });
-    _this.driverListener = _this.driverListener.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.filterDriverList = _this.filterDriverList.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.filterRouteList = _this.filterRouteList.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    return _this;
-  } //refactor....
+    } //refactor....
 
-
-  _createClass(App, [{
+  }, {
     key: "filterDriverList",
     value: function filterDriverList(event) {
       var updatedList = this.state.drivers;

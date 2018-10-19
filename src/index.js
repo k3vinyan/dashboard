@@ -32,21 +32,22 @@ class App extends React.Component {
         today: moment().format('MM-DD-YYYY'),
         items: [],
     }
-    driverListener((err, data) => {
-      const drivers = this.state.drivers;
-      console.log('hi')
-      for(let i = 0; i < drivers.length; i++){
-        if(drivers[i]._id == data._id){
-          drivers[i] = data;
-          const newArray = drivers;
 
-          this.setState({ drivers: newArray})
-        }
-      }
-    })
     this.driverListener = this.driverListener.bind(this)
     this.filterDriverList = this.filterDriverList.bind(this);
     this.filterRouteList = this.filterRouteList.bind(this);
+  }
+  driverListener(err, data){
+    const drivers = this.state.drivers;
+    console.log('hi')
+    for(let i = 0; i < drivers.length; i++){
+      if(drivers[i]._id == data._id){
+        drivers[i] = data;
+        const newArray = drivers;
+
+        this.setState({ drivers: newArray})
+      }
+    }
   }
   //refactor....
   filterDriverList(event){
