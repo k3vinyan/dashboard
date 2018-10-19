@@ -218,7 +218,7 @@ function (_React$Component) {
     value: function componentWillMount() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('http://localhost:3000/api/drivers/' + this.state.today).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('http://amazon-yard.herokuapp.com/api/drivers/' + this.state.today).then(function (res) {
         _this2.setState({
           drivers: res.data
         });
@@ -258,7 +258,7 @@ function (_React$Component) {
       }).catch(function (err) {
         return err;
       });
-      axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('http://localhost:3000/api/routes/' + this.state.today).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('http://amazon-yard.herokuapp.com/api/routes/' + this.state.today).then(function (res) {
         _this2.setState({
           routes: res.data
         });

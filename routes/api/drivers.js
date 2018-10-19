@@ -53,7 +53,6 @@ router.post('/', (req, res) => {
           endTime: endTime,
           createdDate: today,
           checkin: false
-          //block: rId
         })
         d.save(err => {
           if(err) console.log(err)

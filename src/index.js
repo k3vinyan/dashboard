@@ -67,7 +67,7 @@ class App extends React.Component {
   }
 
   componentWillMount(){
-    axios.get('http://localhost:3000/api/drivers/' + this.state.today)
+    axios.get('http://amazon-yard.herokuapp.com/api/drivers/' + this.state.today)
       .then( res => {
         this.setState({ drivers: res.data })
         console.log(this.state.drivers)
@@ -106,7 +106,7 @@ class App extends React.Component {
         return err
       })
 
-    axios.get('http://localhost:3000/api/routes/' + this.state.today)
+    axios.get('http://amazon-yard.herokuapp.com/api/routes/' + this.state.today)
       .then( res => {
         this.setState({ routes: res.data })
         console.log(this.state.routes)
