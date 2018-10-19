@@ -35,7 +35,9 @@ class App extends React.Component {
     driverListener((err, data) => {
       const drivers = this.state.drivers;
       for(let i = 0; i < drivers.length; i++){
-        console.log(drivers[i])
+        if(drivers[i]._id == data._id){
+          console.log(drivers[i])
+        }
       }
     })
 

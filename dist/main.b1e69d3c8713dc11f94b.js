@@ -174,7 +174,9 @@ function (_React$Component) {
       var drivers = _this.state.drivers;
 
       for (var i = 0; i < drivers.length; i++) {
-        console.log(drivers[i]);
+        if (drivers[i]._id == data._id) {
+          console.log(drivers[i]);
+        }
       }
     });
     _this.filterDriverList = _this.filterDriverList.bind(_assertThisInitialized(_assertThisInitialized(_this)));
