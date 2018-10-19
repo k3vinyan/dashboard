@@ -42,7 +42,7 @@ io.on('connection', (socket) => {
   socket.on('check', (data)=> {
     const today = moment().format("MM-DD-YYYY");
     const _id = data._id;
-    const query = {createdDate: today, _id: _id};
+    const query = {createdDate: today, _id: ObjectId(_id)};
     const check = data.checkin;
     console.log(check)
     Driver.find(query, function(err, data){
