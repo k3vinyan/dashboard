@@ -146,14 +146,12 @@ app.id = 'app';
 document.body.appendChild(app);
 var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_12___default()('http://amazon-yard.herokuapp.com');
 
-function driverListener() {
+function driverListener(cb) {
   socket.on('checkupdated', function (data) {
     console.log('hi');
     console.log(data);
   });
 }
-
-driverListener();
 
 var App =
 /*#__PURE__*/
@@ -173,7 +171,8 @@ function (_React$Component) {
       today: moment__WEBPACK_IMPORTED_MODULE_3___default()().format('MM-DD-YYYY'),
       items: []
     };
-    _this.driverListener = _this.filterDriverList = _this.filterDriverList.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    driverListener();
+    _this.filterDriverList = _this.filterDriverList.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.filterRouteList = _this.filterRouteList.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   } //refactor....
