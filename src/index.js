@@ -1,4 +1,3 @@
-import io from 'socket.io-client';
 import $ from 'jquery';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
@@ -11,22 +10,11 @@ import Checkout from './components/Checkout';
 import SearchRoute from './components/SearchRoute';
 import UnplannedTable from './components/UnplannedTable';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import driverListener from './js/socketHelpers';
 
 const app = document.createElement('div');
 app.id = 'app';
 document.body.appendChild(app);
-
-const socket = io('http://amazon-yard.herokuapp.com')
-
-function test(){
-  socket.on('checkupdated', (data) => {
-    console.log('hi')
-    console.log(data)
-  })
-}
-
-test();
-
 
 class App extends React.Component {
   constructor(props){
@@ -36,8 +24,9 @@ class App extends React.Component {
       routes: [],
         blocks: {},
         today: moment().format('MM-DD-YYYY'),
-        items: []
+        items: [],
     }
+    this.driverListener =
     this.filterDriverList = this.filterDriverList.bind(this);
     this.filterRouteList = this.filterRouteList.bind(this);
   }
@@ -94,15 +83,11 @@ class App extends React.Component {
             object[block]['noShow'] += noShow
           }
         })
-
         this.setState({ blocks: object })
-        console.log(this.state.drivers)
-        console.log(this.state.blocks)
       })
       .catch( err => {
         return err
       })
-
 
     axios.get('http://localhost:3000/api/routes/' + this.state.today)
       .then( res => {
