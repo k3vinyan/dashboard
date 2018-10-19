@@ -170,30 +170,27 @@ function (_React$Component) {
       today: moment__WEBPACK_IMPORTED_MODULE_3___default()().format('MM-DD-YYYY'),
       items: []
     };
-    _this.driverListener = _this.driverListener.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.filterDriverList = _this.filterDriverList.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.filterRouteList = _this.filterRouteList.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    return _this;
-  }
-
-  _createClass(App, [{
-    key: "driverListener",
-    value: function driverListener(err, data) {
-      var drivers = this.state.drivers;
-      console.log('hi');
+    driverListener(function (err, data) {
+      var drivers = _this.state.drivers;
 
       for (var i = 0; i < drivers.length; i++) {
         if (drivers[i]._id == data._id) {
           drivers[i] = data;
           var newArray = drivers;
-          this.setState({
+
+          _this.setState({
             drivers: newArray
           });
         }
       }
-    } //refactor....
+    });
+    _this.filterDriverList = _this.filterDriverList.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.filterRouteList = _this.filterRouteList.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
+  } //refactor....
 
-  }, {
+
+  _createClass(App, [{
     key: "filterDriverList",
     value: function filterDriverList(event) {
       var updatedList = this.state.drivers;
