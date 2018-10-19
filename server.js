@@ -42,11 +42,10 @@ io.on('connection', (socket) => {
   socket.on('check', (data)=> {
     const today = moment().format("MM-DD-YYYY");
     const _id = data._id;
-    const query = {_id: ObjectId(_id)};
     const check = data.checkin;
     console.log(_id)
     console.log(check)
-    Driver.find(query, function(err, data){
+    Driver.findById(_id, function(err, data){
       console.log(data)
     })
     // Driver.findOneAndUpdate(query, {$set: {checkin: check}}, {new: true, upsert: true}, function(err, result){
