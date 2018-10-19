@@ -180,6 +180,7 @@ function (_React$Component) {
     };
     driverListener(function (err, data) {
       var drivers = _this.state.drivers;
+      consol.log('hi');
 
       for (var i = 0; i < drivers.length; i++) {
         if (drivers[i]._id == data._id) {

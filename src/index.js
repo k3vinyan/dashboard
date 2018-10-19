@@ -34,6 +34,7 @@ class App extends React.Component {
     }
     driverListener((err, data) => {
       const drivers = this.state.drivers;
+      consol.log('hi')
       for(let i = 0; i < drivers.length; i++){
         if(drivers[i]._id == data._id){
           const newArray = drivers[i] = data;
