@@ -5,13 +5,10 @@ const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const mongoose = require('mongoose');
 require('dotenv').config();
-//const Block = require('./models/block');
 const Driver = require('./models/driver');
+const Route = require('./models/route');
 const moment = require('moment');
 
-//const rosterRoutes = require('./routes/api/rosters');
-//const blockRoutes = require('./routes/api/blocks');
-//const clusterRoutes = require('./routes/api/clusters');
 const driverRoutes = require('./routes/api/drivers');
 const routeRoutes = require('./routes/api/routes');
 const tbaRoutes = require('./routes/api/tbas');
@@ -47,19 +44,27 @@ io.on('connection', (socket) => {
       doc.set({checkin: check})
       doc.save(function(err, doc){
         if(err) console.log(err);
-        console.log('saved!')
+        console.log('Driver Updated!')
 
         socket.broadcast.emit('checkupdated', doc)
       })
     })
-    // Driver.findOneAndUpdate(query, {$set: {checkin: check}}, {new: true, upsert: true}, function(err, result){
-    //   console.log(result)
-    // })
+  })
+
+  socket.on('routeCheck', (data) => {
+    const check = data.checked;
+    const _id = data._id;
+    Route.findById(_id, function(err, doc){
+      doc.set({checkout: check})
+      doc.save(function(err, doc){
+        if(err) console.log(err);
+        console.log('Route Updated!')
+        socket.broadcast.emit('routeCheckUpdated', doc)
+      })
+    })
   })
 })
 
-//app.use('/api/rosters', rosterRoutes);
-//app.use('/api/blocks', blockRoutes);
 app.use('/api/routes', routeRoutes);
 app.use('/api/drivers', driverRoutes);
 app.use('/api/tbas', tbaRoutes);

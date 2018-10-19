@@ -6,6 +6,10 @@ export default class Checkin extends React.Component {
     super(props);
   }
 
+  handleClick(){
+    console.log('hi')
+  }
+
   render(){
     return(
       <div>

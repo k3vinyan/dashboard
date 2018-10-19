@@ -50870,6 +50870,11 @@ function (_React$Component) {
   }
 
   _createClass(Checkin, [{
+    key: "handleClick",
+    value: function handleClick() {
+      console.log('hi');
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

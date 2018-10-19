@@ -12,6 +12,7 @@ const routeSchema = new Schema({
   outForDelivery: Number,
   others: Number,
   createdDate: String,
+  checkout: Boolean,
   tbas: [Schema.Types.Mixed],
   postals: [Schema.Types.Mixed]
 })

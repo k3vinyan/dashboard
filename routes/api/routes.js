@@ -53,13 +53,14 @@ router.post('/', (req, res, next) => {
   const date = req.body.date;
   const cluster = req.body.cluster;
   const routes = req.body.data;
-
+  console.log(routes)
   for(let key in routes){
     const route = Route.find({ createdDate: today, name: key }).limit(1)
     route.exec( (err, doc) => {
       if(doc.length) {
         console.log( doc.name + " already existed in database")
       } else {
+        console.log(routes[key])
         const tbasArr = routes[key]['tbas']
         const postalObj = routes[key]['postals']
         const newRoute = new Route({
@@ -70,8 +71,10 @@ router.post('/', (req, res, next) => {
           totalPackage: routes[key]['total'],
           atStation: routes[key]['atStation'],
           betweenStation: routes[key]['betweenStation'],
-          outForDelivery: routes[key]['others'],
+          outForDelivery: routes[key]['outForDelivery'],
+          others: routes[key]['others'],
           createdDate: today,
+          checkout: false,
           tbas: tbasArr,
           postals: postalObj
         })
