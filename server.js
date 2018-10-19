@@ -46,7 +46,7 @@ io.on('connection', (socket) => {
     const query = {createdDate: today, _id: _id};
     const check = data.checkin;
     console.log(check)
-    const driver = Driver.findOneAndUpdate(query, {checkin: check})
+    const driver = Driver.findOneAndUpdate(query, $set: {checkin: check})
     driver.exec( (err, doc) => {
       if(err){ res.send(err) }
 
