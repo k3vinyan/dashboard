@@ -44,6 +44,7 @@ io.on('connection', (socket) => {
     const today = moment().format("MM-DD-YYYY");
     const _id = data._id;
     const query = {createdDate: today, _id: _id};
+    const check = data.checkin;
     console.log(data)
     console.log(query)
     Driver.findOneAndUpdate(query, {checkin: check}, (err, result) => {
