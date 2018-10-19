@@ -40,7 +40,7 @@ class App extends React.Component {
           drivers[i] = data;
           const newArray = drivers;
           console.log(newArray)
-          this.setState({ drivers: [...this.state.drivers, ]})
+          this.setState({ drivers: newArray})
         }
       }
     })
