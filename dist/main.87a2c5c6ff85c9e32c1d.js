@@ -181,6 +181,10 @@ function (_React$Component) {
           _this.setState({
             drivers: newArray
           });
+
+          _this.setState({
+            items: newArray
+          });
         }
       }
     });
