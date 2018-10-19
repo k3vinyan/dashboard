@@ -40,16 +40,16 @@ io.on('connection', (socket) => {
   date = moment().format("MM-DD-YYYY");
 
   socket.on('check', (data)=> {
-    const today = moment().format("MM-DD-YYYY");
     const _id = data._id;
     const check = data.checkin;
-    console.log(_id)
-    console.log(check)
+
     Driver.findById(_id, function(err, doc){
       doc.set({checkin: check})
-      doc.save(function(err, result){
+      doc.save(function(err, doc){
         if(err) console.log(err);
         console.log('saved!')
+
+        socket.broadcast.emit('checkupdated', doc)
       })
     })
     // Driver.findOneAndUpdate(query, {$set: {checkin: check}}, {new: true, upsert: true}, function(err, result){

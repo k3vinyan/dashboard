@@ -10,13 +10,23 @@ import Checkin from './components/Checkin';
 import Checkout from './components/Checkout';
 import SearchRoute from './components/SearchRoute';
 import UnplannedTable from './components/UnplannedTable';
-
-
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const app = document.createElement('div');
 app.id = 'app';
 document.body.appendChild(app);
+
+const socket = io('http://amazon-yard.herokuapp.com')
+
+function test(){
+  socket.on('checkupdated', (data) => {
+    console.log('hi')
+    console.log(data)
+  })
+}
+
+
+
 
 class App extends React.Component {
   constructor(props){
