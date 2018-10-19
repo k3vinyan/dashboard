@@ -45,7 +45,9 @@ io.on('connection', (socket) => {
     const query = {createdDate: today, _id: _id};
     const check = data.checkin;
     console.log(check)
-    Driver.findOneAndUpdate(query, {$set: {checkin: check}})
+    Driver.findOneAndUpdate(query, {$set: {checkin: check}}, function(err, result){
+      console.log(result)
+    })
   })
 })
 
