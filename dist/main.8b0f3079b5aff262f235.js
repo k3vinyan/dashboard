@@ -180,11 +180,8 @@ function (_React$Component) {
 
           _this.setState({
             drivers: newArray
-          });
+          }); //this.setState({ items: newArray })
 
-          _this.setState({
-            items: newArray
-          });
         }
       }
     });
