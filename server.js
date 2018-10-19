@@ -5,13 +5,13 @@ const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const mongoose = require('mongoose');
 require('dotenv').config();
-const Block = require('./models/block');
+//const Block = require('./models/block');
 const Driver = require('./models/driver');
 const moment = require('moment');
 
-const rosterRoutes = require('./routes/api/rosters');
-const blockRoutes = require('./routes/api/blocks');
-const clusterRoutes = require('./routes/api/clusters');
+//const rosterRoutes = require('./routes/api/rosters');
+//const blockRoutes = require('./routes/api/blocks');
+//const clusterRoutes = require('./routes/api/clusters');
 const driverRoutes = require('./routes/api/drivers');
 const routeRoutes = require('./routes/api/routes');
 const tbaRoutes = require('./routes/api/tbas');
@@ -58,8 +58,8 @@ io.on('connection', (socket) => {
   })
 })
 
-app.use('/api/rosters', rosterRoutes);
-app.use('/api/blocks', blockRoutes);
+//app.use('/api/rosters', rosterRoutes);
+//app.use('/api/blocks', blockRoutes);
 app.use('/api/routes', routeRoutes);
 app.use('/api/drivers', driverRoutes);
 app.use('/api/tbas', tbaRoutes);
