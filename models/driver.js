@@ -11,7 +11,6 @@ const driverSchema = new Schema({
   endTime: String,
   checkin: Boolean,
   createdDate: String
-  //block: { type: Schema.Types.ObjectId, ref: 'Block' }
 })
 
 module.exports = mongoose.model('Driver', driverSchema);
