@@ -17,8 +17,10 @@ router.get('/', (req, res, next) => {
 
 router.get('/:today', (req, res, next) => {
   const today = req.params.today
+  console.log('cat')
   const drivers = Driver.find({ createdDate: today})
   drivers.then(result => {
+    console.log('dog')
     res.send(result)
   })
   .catch( err => {
