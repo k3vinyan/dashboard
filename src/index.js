@@ -36,12 +36,10 @@ class App extends React.Component {
       const drivers = this.state.drivers;
       for(let i = 0; i < drivers.length; i++){
         if(drivers[i]._id == data._id){
-          this.setState(
-            update(this.state, {drivers: drivers[i]})
-          )
+          const newArray = drivers[i] = data;
+          console.log(newArray)
+          this.setState({ drivers: [...this.state.drivers, ]})
           console.log(this.state.drivers)
-          console.log(this.state.drivers[i])
-          break;
         }
       }
     })
