@@ -48,13 +48,11 @@ io.on('connection', (socket) => {
     console.log(data)
     console.log(query)
     const driver = Driver.findOneAndUpdate(query, {checkin: check})
-    driver.exec()
-      .then( result => {
-        console.log(result)
-      })
-      .then( e => {
-        console.log(e)
-      })
+    driver.exec( (err, doc) => {
+      if(err){ res.send(err) }
+
+      console.log(doc)
+    })
 
   })
 })
