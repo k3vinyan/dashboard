@@ -26,20 +26,6 @@ router.get('/:today', (req, res, next) => {
   })
 })
 
-//for testing
-router.get('/count', (req, res, next) => {
-  Driver.countDocuments({})
-  .exec( (err, count )=> {
-    if(err){
-      res.status(500).send(err)
-    } else {
-      console.log( "Number of users:", count );
-      res.send({count: count})
-    }
-  })
-
-})
-
 router.post('/', (req, res) => {
   const today = moment().format("MM-DD-YYYY");
   const driverArr = JSON.parse(req.body.data)
@@ -96,7 +82,7 @@ router.delete('/deleteAll', (req, res, next) => {
   })
 })
 
-router.delete('/:today', (req, res, next) => {
+router.delete('/delete/:today', (req, res, next) => {
   const today = req.params.today;
 
   Driver.deleteMany({date: createdDate}).exec()
