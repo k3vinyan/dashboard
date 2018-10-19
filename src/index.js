@@ -10,11 +10,23 @@ import Checkout from './components/Checkout';
 import SearchRoute from './components/SearchRoute';
 import UnplannedTable from './components/UnplannedTable';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import driverListener from './js/socketHelpers';
+import io from 'socket.io-client';
 
 const app = document.createElement('div');
 app.id = 'app';
 document.body.appendChild(app);
+
+const socket = io('http://amazon-yard.herokuapp.com')
+
+function driverListener(){
+  socket.on('checkupdated', (data) => {
+    console.log('hi')
+    console.log(data)
+  })
+}
+
+driverListener()
+
 
 class App extends React.Component {
   constructor(props){
