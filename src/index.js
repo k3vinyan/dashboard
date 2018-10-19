@@ -25,7 +25,7 @@ function test(){
   })
 }
 
-
+test();
 
 
 class App extends React.Component {

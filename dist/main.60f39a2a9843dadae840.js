@@ -144,6 +144,16 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 var app = document.createElement('div');
 app.id = 'app';
 document.body.appendChild(app);
+var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_0___default()('http://amazon-yard.herokuapp.com');
+
+function test() {
+  socket.on('checkupdated', function (data) {
+    console.log('hi');
+    console.log(data);
+  });
+}
+
+test();
 
 var App =
 /*#__PURE__*/
@@ -59708,7 +59718,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
- //import UnplannedTable from './UnplannedTable';
+
 
 var Layout =
 /*#__PURE__*/
